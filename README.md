@@ -2,5 +2,5 @@
 ## - ReactJs
 ## - NodeJS
 ## - Bootstrap
-## - SQlite.
+## - MySql
 
