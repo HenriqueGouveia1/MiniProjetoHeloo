@@ -15,23 +15,16 @@ import {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Login />
-        </Route>
-        <Route exact path="/cadastrar">
+    
+        
+       
           <Cadastro />
-        </Route>
-        <Route exact path="/feed">
-          <Feed />
-        </Route>
-        <Route exact path="/addproject">
-          <AddProject/>
-        </Route>
-      </Switch>
-    </Router>
+        
+
+       
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+
 
