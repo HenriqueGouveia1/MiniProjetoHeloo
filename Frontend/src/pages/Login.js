@@ -16,7 +16,7 @@ function Login() {
             <Label for="floatingPassword">Senha</Label>
             </div>
             <a href="/feed"><Button color="light" >Entrar</Button></a>
-            <a href="/cadastrar"><Button color="light" >Cadastrar</Button></a>
+            <a href="/cad"><Button color="light" >Cadastrar</Button></a>
           </div>
         </div>
     </div>

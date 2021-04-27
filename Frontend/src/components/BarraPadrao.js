@@ -11,8 +11,8 @@ class BarraPadrao extends Component {
                     <FormGroup>  <Input className="InputPesquisar" type="Search" placeholder="Pesquisar" ></Input></FormGroup>
                     
                     <FormGroup className="form-control-sm">
-                        <Input type="select" name="select" id="exampleSelect">
-                            <option selected>Filtrar por: -----</option>
+                        <Input type="select" name="select" id="exampleSelect" >
+                            <option selected defaultValue="">Filtrar por: -----</option>
                             <option>Viabilidade</option>
                             <option>Data de início</option>
                             <option>Situação</option>    
