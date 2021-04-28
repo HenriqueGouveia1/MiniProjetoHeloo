@@ -90,8 +90,22 @@ app.get("/getProject", (req, res) => {
     });
   });
 
-app.get("/editarProjeto", (req,res) => {
-    res.send('eeeeeeeeeeeeeeeeeeeee')
+app.put("/editarProjeto", (req,res) => {
+    const desc = req.body.desc;
+    const situation = req.body.situation;
+    const viability = req.body.viability;
+    const id = req.body.id;
+    
+    db.query(
+    "UPDATE posts SET desc = ?, situation = ?, viability = ?, WHERE id = ? ",
+    [desc, situation, viability, id ],
+    (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(result);
+        }
+    }) 
 })
 
 app.listen(3030, () => {
