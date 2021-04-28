@@ -37,21 +37,6 @@ const post = sequelize.define('posts', {
     situation: Sequelize.STRING
 })
 
-app.post("/cadUser", (req, res) => {
-    const email = req.body.email;
-    const login = req.body.login;
-    const senha = req.body.senha;
-
-    user.create({
-        email: email,
-        login: login,
-        senha: senha
-    }).then(function(){
-        res.send("User criado com sucesso!")
-     }).catch(function(err){
-         res.send("Aconteceu o seguinte erro: " + err)
-     })
-});
 
 app.post('/cadPost', (req, res) => {
 

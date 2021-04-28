@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
-import Login from './pages/Login';
-import Cadastro from './pages/Cadastro';
+import Home from './pages/Home';
 import Feed from './pages/Feed';
 import AddProject from './pages/AddProject';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,14 +20,11 @@ ReactDOM.render(
         <Route path="/feed">
           <Feed />
         </Route>
-        <Route path="/cad">
-          <Cadastro />
-        </Route>
         <Route path="/AddProject">
           <AddProject />
         </Route>
         <Route exact path="/">
-          <Login />
+          <Home />
         </Route>
       </Switch>
     </Router>
