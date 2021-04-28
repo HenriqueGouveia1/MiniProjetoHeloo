@@ -1,9 +1,15 @@
+//Esse component post contém o filtro e suas ligações com a rota do mesmo para a impressão dos projetos 
+//que vem diretamente do banco de acordo com sua id e a lógica para cada post poder ser editável
+// ou não de acordo com sua situação
+
 import { Card, Input, Label, CardText, Button, CardTitle, CardHeader, CardFooter, FormGroup, Row } from 'reactstrap'
 import Axios from 'axios'
 import { React, useState } from 'react'
 
 function Post() {
   const [projectList, setProjectList] = useState([]);
+  
+  //Setando o comportamento de um botão
   const [show, setShow] = useState(false)
 
   const [newDesc, setNewDesc] = useState("")
@@ -12,6 +18,7 @@ function Post() {
 
   const [filtro, setFiltro] = useState("viability")
 
+ //Filtrando Os projetos  
   const pegarProjeto = () => { 
 
     if (filtro === "viability") {
@@ -29,6 +36,7 @@ function Post() {
     }
   }
 
+  //Passando as informações para o backend para assim editar um projeto de acordo com sua "id" 
   const updateProject = (id) => {
     Axios.put('http://localhost:3030/editarProjeto', { id: id, desc: newDesc, viability: newViability, situation: newSituation })
       .then((response) => {
@@ -59,6 +67,7 @@ function Post() {
           </Input>
         </FormGroup>
 
+        
         <Button className="butaoaquele" onClick={pegarProjeto} >Mostrar projetos</Button>
         {projectList.map((val, key) => {
           return (
@@ -75,6 +84,7 @@ function Post() {
                 <Card>Viabilidade: {val.viability}</Card>
                 <CardFooter>R$: {val.valor}</CardFooter>
                 
+               
                 { val.situation === "Em adamento" && 
                 
                   <Button color="info" onClick={() => setShow(!show)}>Editar projeto</Button>

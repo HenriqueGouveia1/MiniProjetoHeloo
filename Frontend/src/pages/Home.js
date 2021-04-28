@@ -1,5 +1,5 @@
 import '../styles/App.css';
-import {Button, Input, Label} from 'reactstrap' 
+import {Button} from 'reactstrap' 
 
 function Home() {
   return (
