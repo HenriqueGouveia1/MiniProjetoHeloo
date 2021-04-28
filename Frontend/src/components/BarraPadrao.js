@@ -13,9 +13,9 @@ class BarraPadrao extends Component {
                     <FormGroup className="form-control-sm">
                         <Input type="select" name="select" id="exampleSelect" >
                             <option selected defaultValue="">Filtrar por: -----</option>
-                            <option>Viabilidade</option>
-                            <option>Data de início</option>
-                            <option>Situação</option>    
+                            <option value="viability">Viabilidade</option>
+                            <option value="dataDoInicio">Data de início</option>
+                            <option value="situation">Situação</option>    
                         </Input>
                     </FormGroup>
                         <a href="/AddProject"><Button color="light" className="mb-2">Adicionar Novo Projeto</Button></a>

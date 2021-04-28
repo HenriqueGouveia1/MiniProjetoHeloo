@@ -35,22 +35,6 @@ function AddProject() {
                 <Form className="Formtest" >
                     <Row form>
                         <FormGroup>
-                            <Label className="mt-sm-3">Nome do Projeto</Label>
-                            <Input className="mb-1" type="text" name="nome"
-                                onChange={(event) => { setNome(event.target.value)}}></Input>
-                        </FormGroup>
-                        <FormGroup>
-                            <Label>Nome do Responsável</Label>
-                            <Input className="mb-1" type="text" name="nomeResp"
-                                onChange={(event) =>{ setNomeResp(event.target.value)}}></Input>
-                        </FormGroup>
-
-                        <Col md={2}>
-                            <Label>Valor: </Label>
-                            <Input className="mb-1" type="number" placeholder="R$"
-                                onChange={(event) => { setValor(event.target.value) }} defaultValue=""> </Input>
-                        </Col>
-                        <FormGroup>
                             <Col md={4}><Label>Viabilidade</Label>
                                 <Input className="mb-1" type="select" onChange={(event) => { setViability(event.target.value) }}>
                                     <option selected></option>
@@ -60,16 +44,6 @@ function AddProject() {
                                     <option value='4' >4</option>
                                     <option value='5' >5</option>
                                 </Input>
-                            </Col>
-                            <Col md={4}>
-                                <Label>Data de início</Label>
-                                <Input className="mb-1" type="date" name="data"
-                                    onChange={(event) => { setDataDoInicio(event.target.value) }}></Input>
-                            </Col>
-                            <Col md={4}>
-                                <Label>Data de término</Label>
-                                <Input className="mb-1"  type="date" name="data"
-                                    onChange={(event) => { setDataDoFim(event.target.value) }}></Input>
                             </Col>
                             <Col md={4}>
                                 <Label>Situação</Label>
@@ -88,7 +62,7 @@ function AddProject() {
                         </FormGroup>
 
                     </Row>
-                    <Button className="mb-3" color="light" onClick={addPost}>Enviar Novo Projeto</Button>
+                    <Button className="mb-3" color="light" onClick={}>Enviar Novo Projeto</Button>
                 </Form>
             </div>
         </div>

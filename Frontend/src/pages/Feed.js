@@ -1,14 +1,16 @@
 import BarraPadrao from '../components/BarraPadrao'
 import Post from '../components/Post'
 
-
-export default function Feed() {
+function Feed() {
   return (
     <div>
       <BarraPadrao />
-       <div>
-       <Post/>
-       </div>
+      <br/>
+      <div className="">
+        <Post />
+      </div>
+
     </div>
   );
 }
+export default Feed

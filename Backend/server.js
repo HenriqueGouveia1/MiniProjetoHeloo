@@ -1,17 +1,23 @@
 const Sequelize = require('sequelize')
+const mysql = require('mysql')
 const sequelize = new Sequelize('helooproject', 'root', '15963', {
     host: "localhost",
     dialect: 'mysql'
 })
 
 const express = require('express');
-const mysql = require('mysql');
 const cors = require('cors');
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+const db = mysql.createConnection({
+    user: "root",
+    host: "localhost",
+    password: "15963",
+    database: "helooproject",
+  });
 
 const user = sequelize.define('users', {
     login: Sequelize.STRING,
@@ -29,7 +35,6 @@ const post = sequelize.define('posts', {
     dataDoInicio: Sequelize.DATE,
     valor: Sequelize.NUMBER,
     situation: Sequelize.STRING
-
 })
 
 app.post("/cadUser", (req, res) => {
@@ -38,23 +43,27 @@ app.post("/cadUser", (req, res) => {
     const senha = req.body.senha;
 
     user.create({
-       email: email,
-       login: login,
-       senha: senha
+        email: email,
+        login: login,
+        senha: senha
+    }).then(function(){
+        res.redirect('/')
+    }).catch(function(err){
+        res.send("Aconteceu o seguinte erro: " + err)
     })
 });
 
-app.post('/cadPost',(req,res)=>{
-    
+app.post('/cadPost', (req, res) => {
+
     const nome = req.body.nome;
     const desc = req.body.desc;
     const nomeResp = req.body.nomeResp;
-    const viability= req.body.viability;
+    const viability = req.body.viability;
     const dataDoInicio = req.body.dataDoInicio;
     const dataDoFim = req.body.dataDoFim;
     const valor = req.body.valor;
-    const situation = req.body.valor;
-    
+    const situation = req.body.situation;
+
     post.create({
         nome: nome,
         desc: desc,
@@ -64,10 +73,27 @@ app.post('/cadPost',(req,res)=>{
         dataDoInicio: dataDoInicio,
         valor: valor,
         situation: situation
+    }).then(function(){
+        res.redirect('/feed')
+    }).catch(function(err){
+        res.send("Aconteceu o seguinte erro: " + err)
     })
 });
 
+app.get("/getProject", (req, res) => {
+    db.query("SELECT * FROM posts ORDER BY viability DESC", (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  });
+
+app.get("/editarProjeto", (req,res) => {
+    res.send('eeeeeeeeeeeeeeeeeeeee')
+})
 
 app.listen(3030, () => {
-    console.log('macaco1')
+    console.log('Estamos online!')
 });
