@@ -47,10 +47,10 @@ app.post("/cadUser", (req, res) => {
         login: login,
         senha: senha
     }).then(function(){
-        res.redirect('/')
-    }).catch(function(err){
-        res.send("Aconteceu o seguinte erro: " + err)
-    })
+        res.send("User criado com sucesso!")
+     }).catch(function(err){
+         res.send("Aconteceu o seguinte erro: " + err)
+     })
 });
 
 app.post('/cadPost', (req, res) => {
