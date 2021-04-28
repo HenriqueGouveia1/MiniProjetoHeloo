@@ -16,7 +16,6 @@ import {
 
 ReactDOM.render(
   <React.StrictMode>
-
     <Router>
       <Switch>
         <Route path="/feed">
@@ -31,7 +30,6 @@ ReactDOM.render(
         <Route exact path="/">
           <Login />
         </Route>
-
       </Switch>
     </Router>
 

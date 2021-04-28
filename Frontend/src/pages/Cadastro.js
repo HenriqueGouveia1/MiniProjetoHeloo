@@ -2,8 +2,9 @@ import '../styles/App.css';
 import { Button, Input, Label, Form } from 'reactstrap'
 import { useState } from 'react';
 import Axios from "axios";
+import { withRouter } from 'react-router';
 
-function Cadastro() {
+function Cadastro(props) {
 
   const [email, setEmail] = useState("");
   const [login, setLogin] = useState("");
@@ -16,7 +17,7 @@ function Cadastro() {
       email: email,
       login: login,
       senha: senha
-     }).catch(erro => console.log(erro))
+     }).then(res => { props.history.replace("/") } ).catch(erro => console.log(erro))
     }
 
   return (
@@ -47,4 +48,4 @@ function Cadastro() {
   );
 }
 
-export default Cadastro;
+export default withRouter(Cadastro);

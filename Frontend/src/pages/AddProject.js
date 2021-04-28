@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import BarraAdd from '../components/BarraAdd'
 import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Axios from 'axios'
+import { withRouter } from 'react-router';
 
-function AddProject() {
+function AddProject(props) {
 
     const [nome, setNome] = useState("");
     const [nomeResp, setNomeResp] = useState("");
@@ -25,7 +26,7 @@ function AddProject() {
             dataDoInicio: dataDoInicio,
             valor: valor,
             situation: situation
-        }).catch(erro => console.log(erro))
+        }).then(res => { props.history.replace("/feed") } ).catch(erro => console.log(erro))
     }
 
     return (
@@ -53,7 +54,7 @@ function AddProject() {
                         <FormGroup>
                             <Col md={4}><Label>Viabilidade</Label>
                                 <Input className="mb-1" type="select" onChange={(event) => { setViability(event.target.value) }}>
-                                    <option selected></option>
+                                    <option disabled selected></option>
                                     <option value='1'>1</option>
                                     <option value='2' >2</option>
                                     <option value='3' >3</option>
@@ -74,7 +75,7 @@ function AddProject() {
                             <Col md={4}>
                                 <Label>Situação</Label>
                                 <Input className="mb-1" type="select" onChange={(event) => {setSituation(event.target.value) }}>
-                                    <option selected></option>
+                                    <option disabled selected></option>
                                     <option value="Concluido">Concluido</option>
                                     <option value="Cancelado">Cancelado</option>
                                     <option value="Em adamento">Em adamento</option>
@@ -94,4 +95,4 @@ function AddProject() {
         </div>
     )
 }
-export default AddProject
+export default withRouter(AddProject)

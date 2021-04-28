@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const mysql = require('mysql')
+const mysql2 = require('mysql2')
 const sequelize = new Sequelize('helooproject', 'root', '15963', {
     host: "localhost",
     dialect: 'mysql'
@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const db = mysql.createConnection({
+const db = mysql2.createConnection({
     user: "root",
     host: "localhost",
     password: "15963",
@@ -74,7 +74,7 @@ app.post('/cadPost', (req, res) => {
         valor: valor,
         situation: situation
     }).then(function(){
-        res.redirect('/feed')
+       res.send("Post criado com sucesso!")
     }).catch(function(err){
         res.send("Aconteceu o seguinte erro: " + err)
     })
@@ -89,25 +89,39 @@ app.get("/getProject", (req, res) => {
       }
     });
   });
+app.get("/getProjectByDate", (req, res) => {
+    db.query("SELECT * FROM posts ORDER BY dataDoInicio DESC", (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  });
+app.get("/getProjectBySituation", (req, res) => {
+    db.query("SELECT * FROM posts ORDER BY situation DESC", (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  });
 
-app.put("/editarProjeto", (req,res) => {
+app.put("/editarProjeto", (req, res) => {
     const desc = req.body.desc;
     const situation = req.body.situation;
     const viability = req.body.viability;
     const id = req.body.id;
     
-    db.query(
-    "UPDATE posts SET desc = ?, situation = ?, viability = ?, WHERE id = ? ",
-    [desc, situation, viability, id ],
-    (err, result) => {
-        if (err) {
-          console.log(err);
-        } else {
-          res.send(result);
+    post.update({ desc, situation, viability }, {
+        where: {
+             id
         }
-    }) 
+      });
+
 })
 
 app.listen(3030, () => {
-    console.log('Estamos online!')
+    console.log('RUN BITCH! RUUUUUUUuuuuun....')
 });
