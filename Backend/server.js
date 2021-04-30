@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const mysql = require('mysql')
+const mysql2 = require('mysql2')
 const sequelize = new Sequelize('helooproject', 'root', '15963', {
     host: "localhost",
     dialect: 'mysql'
@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 //Criando uma coneão com o banco de dados
-const db = mysql.createConnection({
+const db = mysql2.createConnection({
     user: "root",
     host: "localhost",
     password: "15963",

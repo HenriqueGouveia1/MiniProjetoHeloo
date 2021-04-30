@@ -54,10 +54,12 @@ function Post() {
         }))
       })
   }
- 
+ //Aqui fica o filtro e o botão que mostra a lista dos projetos
+ //E a impressão da lista de projetos e a opção de edição
   return (
     <div >
-      
+        
+        <div className="container">
         <FormGroup className="form-control-sm">
           <Input className="editButton" type="select" name="select" id="exampleSelect" onChange={(event) => {setFiltro(event.target.value)}}>
             <option selected disabled defaultValue="">Filtrar por: -----</option>
@@ -65,16 +67,17 @@ function Post() {
             <option value="dataDoInicio">Data de início</option>
             <option value="situation">Situação</option>
           </Input>
+          <Button className="" onClick={pegarProjeto} >Mostrar projetos</Button>
         </FormGroup>
+        </div>
 
-        
-        <Button className="butaoaquele" onClick={pegarProjeto} >Mostrar projetos</Button>
+       
         {projectList.map((val, key) => {
           return (
-            <div className="container ">
+            <div className="container">
               <br />
-              <Card body >
-                <CardHeader>Data de criação: {val.createdAt}</CardHeader>
+              
+                <CardHeader>Data de criação: {val.createdAt} // Data de atualização: {val.updatedAt} </CardHeader>
                 <CardTitle>Nome do projeto: {val.nome}</CardTitle>
                 <Card>Nome do Responsavel: {val.nomeResp}</Card>
                 <CardText>Descrição: {val.desc}</CardText>
@@ -83,12 +86,9 @@ function Post() {
                 <Card>Data do Fim: {val.dataDoFim}</Card>
                 <Card>Viabilidade: {val.viability}</Card>
                 <CardFooter>R$: {val.valor}</CardFooter>
-                
-               
-                { val.situation === "Em adamento" && 
-                
+                   
+                { val.situation === "Em adamento" &&                 
                   <Button color="info" onClick={() => setShow(!show)}>Editar projeto</Button>
-
                 }
                                 
                 {show ? <div className="">
@@ -115,8 +115,6 @@ function Post() {
 
                   <Button type="submit" onClick={() => { updateProject(val.id) }}>Enviar mudanças</Button>
                 </div> : null}
-
-              </Card>
 
             </div>
           )
